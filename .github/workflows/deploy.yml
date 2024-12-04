@@ -1,0 +1,22 @@
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'outputs-update-**'
+
+jobs:
+  deploy:
+    runs-on:
+      - ubuntu-latest
+
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Create pull request
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh pr create -B main --title "Automated output update" --body "Created by seagen-bot"
