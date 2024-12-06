@@ -1,8 +1,8 @@
 on:
   workflow_dispatch:
   push:
-    branches:
-      - 'outputs-update-**'
+    branches-ignore:
+      - main
 
 jobs:
   deploy:
