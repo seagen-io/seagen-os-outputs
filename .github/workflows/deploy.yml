@@ -15,8 +15,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
     - name: Create pull request
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: ${{ github.head_ref || github.ref_name }}
       run: |
-        gh pr create -B main --fill
+        gh pr create -B main -H "$BRANCH" --fill
