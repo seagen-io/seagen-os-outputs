@@ -6,8 +6,7 @@ on:
 
 jobs:
   deploy:
-    runs-on:
-      - ubuntu-latest
+    runs-on: self-hosted
 
     permissions:
       contents: read
@@ -27,5 +26,5 @@ jobs:
             echo "PR already exists: ${PR_URL}"
             exit 0
         else
-            gh pr create -B main -H "$BRANCH" --fill --reviewer tshakah,dschaub
+            gh pr create -B main -H "$BRANCH" --fill --reviewer tshakah
         fi
